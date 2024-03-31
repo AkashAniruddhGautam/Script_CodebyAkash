@@ -1,0 +1,23 @@
+//SIP calculator
+
+function calculateMaturity() {
+            // Get user input
+            var monthlyInvestment = parseFloat(document.getElementById('monthlyInvestment').value);  //montlyInvestments is an id that is cerated in html
+            var annualReturnRate = parseFloat(document.getElementById('annualReturnRate').value);
+            var investmentDuration = parseInt(document.getElementById('investmentDuration').value);
+
+            // Validate input
+            if (isNaN(monthlyInvestment) || isNaN(annualReturnRate) || isNaN(investmentDuration)) {
+                alert('Please enter valid numeric values');
+                return;
+            }
+
+            // Calculate maturity amount
+            var monthlyRate = annualReturnRate / 12 / 100;
+            var totalMonths = investmentDuration * 12;
+            var maturityAmount = monthlyInvestment * ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) * (1 + monthlyRate);
+
+            // Display the result
+            document.getElementById('result').innerHTML = ' total investments in ' + investmentDuration + ' years will be: ' + investmentDuration*(12*monthlyInvestment).toFixed(2);
+            document.getElementById('tot').innerHTML = 'Your SIP maturity amount after ' + investmentDuration + ' years will be: ' + maturityAmount.toFixed(2);
+        }
